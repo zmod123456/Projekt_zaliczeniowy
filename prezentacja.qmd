@@ -1,0 +1,77 @@
+---
+title: "Moje pasje i zainteresowania - muzyka"
+format: revealjs
+editor: visual
+---
+
+## Dlaczego muzyka jest dla mnie ważna
+
+Dzięki niej moje podróże na uczelnie są dużo znośniejsze.
+
+## Moje ulubione gatunki
+
+```{r echo = FALSE}
+library(ggplot2)
+dane_muzyka <- data.frame(
+  Gatunek = c("Nowa fala", "Rock klasyczny", "Grunge", "Punk", "Rock alternatywny"),
+  Procent = c(38, 25, 13, 13, 13)
+)
+
+ggplot(dane_muzyka, aes(x = Gatunek, y = Procent, fill = Gatunek)) +
+  geom_col() + 
+  theme_minimal() +
+  labs(
+    title = "Moje ulubione gatunki muzyczne",
+    x = "Gatunek",
+    y = "Udział (%)"
+  ) 
+ 
+```
+
+## Czas spędzony na słuchaniu muzyki w ciągu tygodnia
+
+```{r echo=FALSE}
+muzyka_dni <- data.frame(
+  Dzien = factor(c("Pon", "Wt", "Sr", "Czw", "Pt", "Sob", "Ndz"), 
+                 levels = c("Pon", "Wt", "Sr", "Czw", "Pt", "Sob", "Ndz")),
+  Godziny = c(2, 1.5, 3, 2.5, 4, 6, 5)
+)
+
+ggplot(muzyka_dni, aes(x = Dzien, y = Godziny, fill = Dzien)) +
+  geom_col() +
+  theme_minimal() +
+  labs(title = "Średnia liczba godzin słuchania muzyki", y = "Liczba godzin")
+```
+
+## Top wykonawcy
+
+::::: columns
+::: {.column width="50%"}
+1.  The Smiths
+2.  Republika
+3.  Nirvana
+4.  The Doors
+5.  David Bowie
+:::
+
+::: {.column width="50%"}
+![](assets/bowie.webp){width="100%"}
+:::
+:::::
+
+## Ulubione albumy
+
+1.  The Beatles - Rubber Soul
+2.  David Bowie - Station to Station
+3.  Kult - Tata Kazika
+
+## Kiedy najczęściej słucham muzyki
+
+-   w podróży
+-   w trakcie nauki/robienia projektów
+-   przy sprzątaniu
+-   podczas grania w gry
+
+## Dziękuje za uwagę
+
+![](assets/ostatnislajd.jpg)

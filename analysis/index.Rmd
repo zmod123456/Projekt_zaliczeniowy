@@ -8,4 +8,14 @@ editor_options:
   chunk_output_type: console
 ---
 
-Welcome to my research website.
+### Krótkie wprowadzenie
+
+Z M
+
+Informatyka i Inżynieria Danych
+
+<img src="assets/zdjecie_uczelni.jpg" alt="Zdjęcie uczelni" width="200">
+
+_Strona została wykonana w workflowr_
+
+

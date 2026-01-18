@@ -1,21 +1,100 @@
 ---
-title: "License"
+title: "Analiza danych w R"
 output:
   workflowr::wflow_html:
     toc: false
 editor_options:
   chunk_output_type: console
 ---
+```{r include=FALSE}
+library(dplyr)
+library(tidyverse)
+library(ggplot2)
 
-What license are you using for your code? See [choosealicense.com][choose] for
-help deciding. It's a convention to save a file `LICENSE` in the root of your
-Git repo that contains the license text.
+```
 
-What license are you using for the written content on your site? It is
-traditional to choose a [Creative Commons][cc] license for this type of content.
+## Opis źródła danych
 
-[choose]: https://choosealicense.com/
-[cc]: https://creativecommons.org/choose/
+Zbiór danych `iris` jest jednym z najsłynniejszych zbiorów w statystyce i uczeniu maszynowym. Pochodzi z publikacji Ronalda Fishera z 1936 roku.
 
-How should others cite your work? It's a convention to save a file `CITATION`
-in the root of your Git repo that contains the citation information.
+Przedstawia on pomiary morfologiczne trzech gatunków irysów:
+
+* Iris setosa
+* Iris versicolor
+* Iris virginica
+
+Dla każdego z 150 okazów (po 50 na gatunek) zmierzono cztery cechy: długość i szerokość działki kielicha (sepal) oraz długość i szerokość płatka korony (petal).
+
+## Obliczenia
+
+### Przekształcenia z użyciem dplyr
+
+```{r echo=TRUE}
+pkt23 <- iris %>% 
+  filter(Sepal.Length > 1.5) %>%
+  mutate(kielich_wymiary = Sepal.Length * Sepal.Width) %>% 
+  group_by(Species) %>% 
+  summarise(
+    sr_kielich=mean(kielich_wymiary),
+    liczba=n()
+  )
+
+```
+Wyniki z przekształcenia:
+```{r echo = FALSE}
+knitr::kable(pkt23)
+```
+
+
+### Wizualizacje wykonane w ggplot2
+
+####  **1. Wykres słupkowy**
+
+```{r echo = FALSE}
+pk232 <- iris %>% 
+  group_by(Species) %>% 
+  summarise(
+    sr_kielich=mean(Sepal.Length),
+    liczba=n()
+  )
+
+
+ggplot(pk232, aes(x = Species, y = sr_kielich, fill = Species)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Średnie długości działki kielicha w zależności od gatunku", 
+       x = "Gatunek irysa", 
+       y = "Średnia długość (cm)")
+
+```
+
+Interpretacja: Gatunek virginica posiada statystycznie najdłuższe działki kielicha.
+
+#### **2. Wykres liniowy**
+
+```{r echo = FALSE}
+ggplot(iris, aes(x = Petal.Length, y = Petal.Width, color = Species)) +
+  geom_line() +
+  labs(
+    title = "Relacja szerokości do długości płatka",
+    x = "Długość płatka",
+    y = "Szerokość płatka"
+  ) 
+```
+
+Interpretacja: Wykres pokazuje silną zależność dodatnią - wraz ze wzrostem długości płatka zwiększa się również jego szerokość, co jest widoczne dla wszystkich trzech gatunków.
+
+#### **3. Wykres boxplot**
+
+```{r echo = FALSE}
+
+ggplot(iris, aes(x = Species, y = Sepal.Width, fill = Species)) +
+  geom_boxplot() +
+  labs(
+    title = "Rozkład szerokości działki kielicha",
+    x = "Gatunek",
+    y = "Szerokość (cm)"
+  ) 
+
+```
+
+Interpretacja: Wykres pudełkowy pokazuje, że gatunek setosa ma najwyższą średnią szerokość działki kielicha.

@@ -1,5 +1,5 @@
 ---
-title: "About"
+title: "CV"
 output:
   workflowr::wflow_html:
     toc: false
@@ -7,4 +7,35 @@ editor_options:
   chunk_output_type: console
 ---
 
-Describe your project.
+## Z M - CV
+
+E-mail: jakisprzykladowymail@gmail.com 
+
+Telefon: +48 123 456 789
+
+Data urodzenia: 6.07.2005
+
+
+### Wykształcenie
+
+10.2023 - obecnie 
+
+Uniwersytet Przyrodniczy 
+
+Kierunek:  Informatyka i Inżynieria Danych 
+
+Stopień wykształcenia:  inżynierski
+
+### Umiejętności
+
+**Języki programowania**: HTML, CSS, C, C++, C#, Python, MySQL, React Native
+
+**Narzędzia**: Cisco Packet Tracer, Excel, Word, WordPress
+
+**Język angielski**: B2
+
+### Projekty
+
+* Analiza popularności gatunków filmów - identyfikacja i ocena siły wpływu wybranych parametrów na popularność filmów.
+* Wykorzystanie metod uczenia maszynowego w automatycznej diagnostyce chorób pszenicy.
+
